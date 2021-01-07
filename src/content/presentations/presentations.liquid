@@ -1,0 +1,29 @@
+---
+layout: index
+title: Speaking
+summary: I speak at events about the web and the culture that surrounds it.
+introduction: |
+  I speak at events about the web and the culture that surrounds it, often with reference to my interests in politics, architecture and sustainability.
+
+  Want me to speak at your event? [Get in touch](/contact).
+permalink: presentations/
+tags: false
+changefreq: weekly
+priority: 0.9
+---
+{%- assign featured = collections.presentation | includes: 'data.tags','featured' | reverse -%}
+{%- render 'section' with featured
+  id: 'featured'
+  title: 'Select presentations'
+  scrollable: true
+  itemsComponent: 'card'
+  itemsGridSize: '15rem'
+-%}
+{%- assign appearances = collections.event | where: 'data.participant' | reverse -%}
+{%- render 'section' with appearances
+  id: 'appearances'
+  title: 'Events I’ve spoken at'
+  itemsLimit: 16
+  itemsModifier: 'inline'
+  itemHideSummary: true
+-%}

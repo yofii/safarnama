@@ -1,0 +1,15 @@
+<ul class="items{% if modifier %} items--{{ modifier }}{% endif %}" style="--grid-size: {{ gridSize | default: '100%' }}">
+{%- for item in items limit: limit -%}
+  {%- assign id = item.wm-id | default: forloop.rindex -%}
+  <li class="items__item">
+    {%- render 'item/{{ component | default: item.data.type | default: item.data.layout }}'
+      id: id
+      item: item
+      hideSummary: itemHideSummary
+      imageRatio: itemImageRatio
+    -%}
+  </li>
+{%- else -%}
+  <li class="items__item">{{ itemsNoContent | markdown: 'inline' }}</li>
+{%- endfor -%}
+</ul>

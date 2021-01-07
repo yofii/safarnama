@@ -1,0 +1,44 @@
+.facepile {
+  --anchor-decoration: none;
+  align-items: center;
+  display: inline-flex;
+  padding-block: var(--inset-small);
+}
+
+.facepile .avatar {
+  --avatar-size: var(--size-icon-medium);
+  margin-inline-end: calc(var(--space-inline) * -1);
+  transition: 0.15s ease-in;
+  transition-property: margin;
+}
+
+[open] .facepile .avatar,
+.facepile:hover .avatar {
+  margin-inline-end: 0;
+}
+
+.facepile__title {
+  margin-inline-end: var(--space-inline);
+  white-space: nowrap;
+}
+
+.facepile__title:hover {
+  color: var(--color-accent);
+  text-decoration-color: var(--color-accent);
+}
+
+.facepile__main {
+  align-items: center;
+  display: flex;
+}
+
+.facepile__counter {
+  @extend %caption;
+  align-items: center;
+  background-color: var(--color-offset);
+  block-size: var(--size-icon-medium);
+  border-radius: 100%;
+  display: inline-flex;
+  inline-size: var(--size-icon-medium);
+  justify-content: center;
+}

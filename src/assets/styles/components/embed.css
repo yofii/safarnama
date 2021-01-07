@@ -1,0 +1,37 @@
+.embed {
+  align-items: center;
+  background-color: var(--color-offset);
+  display: flex;
+  justify-content: center;
+}
+
+.embed iframe {
+  z-index: 1;
+}
+
+.embed__button {
+  background-color: hsl(var(--tint) 8% / 67%);
+  block-size: 2em;
+  border-radius: 100%;
+  box-shadow: 0 0 0 1px hsl(0 100% 100% / 25%);
+  color: white;
+  cursor: pointer;
+  font-size: var(--step-5);
+  inline-size: 2em;
+  margin: 0;
+  position: relative;
+  text-indent: 0.25em;
+  transition-duration: var(--transition-short);
+  transition-property: all;
+  z-index: 1;
+}
+
+.embed__button:hover {
+  background-color: hsl(var(--tint) 8% / 90%);
+}
+
+.embed__button:focus {
+  background-color: var(--color-focus);
+  border: var(--border-width-thicker) solid white;
+  outline: 0;
+}

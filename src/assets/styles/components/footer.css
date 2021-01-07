@@ -1,0 +1,37 @@
+.footer {
+  @extend %caption;
+
+  align-items: baseline;
+  display: flex;
+  padding-block-end: var(--step-0);
+}
+
+[data-type="note"] .c-footer,
+[data-type="photo"] .c-footer {
+  margin-block-start: auto;
+}
+
+.footer a {
+  text-decoration: none;
+}
+
+.footer cite {
+  font-style: normal;
+}
+
+.footer dl {
+  flex: 1;
+}
+
+.footer dt,
+.footer dd {
+  display: inline;
+  white-space: nowrap;
+}
+
+.footer dd:not(:last-of-type)::after {
+  content: "·";
+  display: inline;
+  opacity: 0.5;
+  padding-inline: calc(var(--space-inline) / 2);
+}

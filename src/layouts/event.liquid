@@ -1,0 +1,39 @@
+{%- layout 'default' -%}
+{%- block 'main' -%}
+  {%- render 'footer-event'
+    date: date
+    start: start
+    end: end
+    place: place
+    vocab: vocab
+  -%}
+  {%- render 'header'
+    title: title
+    summary: summary
+    url: url
+  -%}
+  {%- capture content -%}
+    {%- if image -%}
+      {%- render 'image' with image
+        class: 'align-start'
+        preset: 'thumbnail'
+      -%}
+    {%- endif -%}
+    {{ content }}
+  {%- endcapture -%}
+  {%- render 'content' with content -%}
+  {%- render 'section' with relatedArticles
+    id: 'related'
+    title: 'Related articles'
+    itemsGridSize: '15rem'
+  -%}
+  {% for this in category %}
+    {%- capture sectionTitle %}Other {{ this }} events{%- endcapture -%}
+    {%- assign relatedEvents = collections.event | includes: 'data.category',this | excludes: 'url',page.url | reverse -%}
+    {%- render 'section' with relatedEvents
+      id: 'related'
+      title: sectionTitle
+      itemsModifier: 'inline'
+    -%}
+  {%- endfor -%}
+{%- endblock -%}

@@ -1,0 +1,15 @@
+---
+eleventyExcludeFromCollections: true
+layout: index
+title: Offline
+summary: You appear to be offline.
+introduction: Your network connection isn’t working right now, and this page is not available offline. Why not read one of the following articles instead?
+permalink: offline/
+---
+{%- assign saved = collections.article | reverse %}
+{%- render 'section' with saved
+  id: 'saved'
+  title: 'Articles available to read offline'
+  itemsLimit: 6
+  itemsModifier: 'inline'
+-%}

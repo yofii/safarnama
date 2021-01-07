@@ -1,0 +1,16 @@
+---
+layout: index
+title: Archive
+introduction: Collections
+permalink: collections/
+tags: false
+changefreq: weekly
+priority: 0.9
+eleventyComputed:
+  pageTitle: "{{ introduction }} · {{ app.title }}"
+---
+{%- assign collections = collections.collection | sort_natural: 'fileSlug' -%}
+{%- render 'items' with collections
+  component: 'section'
+  gridSize: '12rem'
+-%}

@@ -1,0 +1,14 @@
+---
+layout: index
+title: Articles
+introduction: Source publications
+permalink: articles/sources/
+changefreq: weekly
+priority: 0.9
+eleventyComputed:
+  pageTitle: "{{ introduction }} · {{ app.title }}"
+---
+{%- render 'items' with collections.source
+  component: 'section'
+  gridSize: '12rem'
+-%}

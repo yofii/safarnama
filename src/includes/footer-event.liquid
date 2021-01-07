@@ -1,0 +1,24 @@
+<footer class="footer">
+  <dl>
+    <dt class="visually-hidden">Date</dt>
+    {%- assign date-start = start | date: 'yyyy-MM-dd' -%}
+    {%- assign date-end = end | date: 'yyyy-MM-dd' -%}
+    <dd>
+      {%- if date-start != date-end -%}
+        <time class="dt-start" datetime="{{ start | date: dates.iso }}">{{ start | date: dates.date_long }}</time> -
+        <time class="dt-end" datetime="{{ end | date: dates.iso }}">{{ end | date: dates.date_long }}</time>
+      {%- else -%}
+        <time class="dt-start" datetime="{{ start | date: dates.iso }}">{{ start | date: dates.datetime_full }}</time>
+        <time class="dt-end" datetime="{{ end | date: dates.iso }}"></time>
+      {%- endif -%}
+    </dd>
+{%- if place -%}
+    <dt class="visually-hidden">Location</dt>
+    <dd class="p-location h-card">
+      <a class="u-url" href="{{ place.url }}">
+        <span class="p-name">{{ place.data.title | markdown: 'inline' }}</span>, <span class="p-adr h-adr p-locality">{{ place.data.place.address.locality }}</span>
+      </a>
+    </dd>
+{%- endif -%}
+  </dl>
+</footer>

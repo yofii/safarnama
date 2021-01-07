@@ -1,0 +1,16 @@
+<header class="header">
+  <h1 class="header__title{% if vocab %} | p-name{% endif %}">
+    {% if icon %}{% icon icon %}{% endif %}
+    {{ title | newline_to_br }}
+  </h1>
+{%- if summary -%}
+  <div class="header__summary{% if vocab %} | p-summary{% endif %}">
+    {{ summary | markdown }}
+  </div>
+{%- endif -%}
+{%- if url -%}
+  <div class="header__url">
+    <a class="u-{{ url_class | default: 'url' }}" rel="external" href="{{ url }}">{{ url | hostname }}</a>
+  </div>
+{%- endif -%}
+</header>

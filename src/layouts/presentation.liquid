@@ -1,0 +1,22 @@
+{%- layout 'default' -%}
+{%- block 'main' -%}
+  {%- render 'footer'
+    date: date
+  -%}
+  {%- render 'header'
+    title: title
+    summary: summary
+    vocab: vocab
+  -%}
+  {%- capture content -%}
+    {{- content -}}
+    {%- for slide in slides -%}
+      {%- render 'figure' with slide.image
+        caption: slide.notes
+        alignment: 'slide'
+        imagePreset: 'thumbnail'
+      -%}
+    {%- endfor -%}
+  {%- endcapture -%}
+  {%- render 'content' with content -%}
+{%- endblock -%}

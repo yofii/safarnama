@@ -1,0 +1,41 @@
+{%- layout 'default' -%}
+{%- block 'main' -%}
+  {%- render 'footer'
+    date: false
+    geo: place.geo
+  -%}
+  {%- render 'header'
+    title: title
+    icon: place.icon
+    url: place.url
+    vocab: vocab
+  -%}
+  {%- capture content -%}
+    <figure class="align-bleed">
+      <a href="https://duckduckgo.com/?q={{ place.geo.latitude }},{{ place.geo.longitude }}&iaxm=places">
+        {%- capture overlay -%}
+          pin-l+{{ app.accentColor | remove: '#' }}({{ place.geo.longitude }},{{ place.geo.latitude }})
+        {%- endcapture -%}
+        {%- capture position -%}
+          {{ place.geo.longitude }},{{ place.geo.latitude }},15,0.00,0.00
+        {%- endcapture -%}
+        {%- render 'map'
+          overlay: overlay
+          position: position
+        -%}
+      </a>
+      <figcaption>
+        {%- render 'address' with place.address -%}
+      </figcaption>
+    </figure>
+    {{ place.content | markdown }}
+  {%- endcapture -%}
+  {%- render 'content' with content -%}
+  {%- assign relatedEvents = collections.event | includes: 'data.placeId',place.id | reverse -%}
+  {%- render 'section' with relatedEvents
+    id: 'events'
+    title: 'Events at this location'
+    itemsModifier: 'inline'
+    itemHideSummary: true
+  -%}
+{%- endblock -%}

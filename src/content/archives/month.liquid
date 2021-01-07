@@ -1,0 +1,20 @@
+---
+layout: index
+title: Archive
+pagination:
+  data: months
+  size: 1
+  alias: page
+  addAllPagesToCollections: true
+permalink: "{{ page.url }}"
+changefreq: monthly
+priority: 0.2
+eleventyComputed:
+  pageTitle: "{{ page.data.title }} · {{ app.title }}"
+  introduction: "{{ page.data.title }}"
+---
+{%- assign items = collections.post | includes: 'date',page.data.date -%}
+{%- render 'items' with items
+  modifier: 'inline'
+  itemsNoContent: 'Nothing was published during this month.'
+-%}
