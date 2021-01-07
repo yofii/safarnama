@@ -1,0 +1,9 @@
+.categories {
+  color: var(--color-accent);
+}
+
+.categories li {
+  display: inline-block;
+  padding: var(--inset-small-squished);
+  padding-inline-start: 0;
+}

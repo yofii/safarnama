@@ -1,0 +1,18 @@
+<header class="banner">
+  <div class="banner__container">
+    <a class="banner__skip" href="#main">Skip to content</a>
+    <div class="banner__title">
+      <a rel="home" href="/">{{ app.title }}</a>
+    </div>
+    <nav class="banner__navigation" aria-label="site">
+      {%- render 'navigation' with navigation.primary
+        page: page
+        tags: tags
+      -%}
+      {%- render 'navigation' with navigation.secondary
+        page: page
+        tags: tags
+      -%}
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,29 @@
+{%- assign itinerary = collections.travel | includes: 'data.tripId',trip.id | first -%}
+{%- layout 'default' -%}
+{%- block 'main' -%}
+  {%- render 'footer'
+    date: trip.date
+  -%}
+  {%- render 'header'
+    title: title
+    summary: summary
+    vocab: vocab
+  -%}
+  {%- capture content -%}
+    <p>Part of a journey to <a href="{{ itinerary.url }}">{{ itinerary.data.title }}</a>.</p>
+    <figure class="align-bleed">
+      {%- capture overlay %}geojson({{ trip.geojson | json | escape }}){% endcapture -%}
+      {%- render 'map'
+        overlay: overlay
+        position: position
+      -%}
+      <figcaption>
+        {% for stop in trip.stops %}
+          <a href="/places/{{ stop.id }}">{% unless forloop.first %}{% icon stop.icon %} {% endunless %}{{ stop.title }}{% if stop.address.country-name != "United Kingdom" %}, {{ stop.address.country-name }}{% endif %}{% if stop.iata %} ({{ stop.iata }}) {% endif %}</a><br>
+        {% endfor %}
+      </figcaption>
+    </figure>
+    {{ trip.content | markdown }}
+  {%- endcapture -%}
+  {%- render 'content' with content -%}
+{%- endblock -%}

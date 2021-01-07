@@ -1,0 +1,12 @@
+{%- layout 'default' -%}
+{%- block 'main' -%}
+  {%- render 'header'
+    title: title
+    summary: summary
+    url: source.url
+  -%}
+  {%- assign items = collections.article | includes: 'data.tags',tag -%}
+  {%- render 'items' with items
+    itemsModifier: 'inline'
+  -%}
+{%- endblock -%}

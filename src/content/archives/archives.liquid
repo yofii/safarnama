@@ -1,0 +1,19 @@
+---
+layout: index
+title: Archive
+permalink: archive/
+changefreq: weekly
+priority: 0.9
+---
+{% render 'form/search' %}
+{% assign archive = years | reverse %}
+{% render 'section-archives' with archive
+  id: 'browse',
+  title: 'Browse by year'
+%}
+{%- render 'section' with other
+  id: 'other'
+  title: 'Other archives'
+  itemsComponent: 'section'
+  itemsGridSize: '12rem'
+-%}

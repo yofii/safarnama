@@ -1,0 +1,13 @@
+{%- layout 'default' -%}
+{%- block 'main' -%}
+  {%- render 'header'
+    title: title
+    summary: summary
+  -%}
+  {%- assign items = collections.project | includes: 'data.category',title -%}
+  {%- render 'items' with items
+    component: 'card'
+    gridSize: '12rem'
+    itemImageRatio: 1.0
+  -%}
+{%- endblock -%}

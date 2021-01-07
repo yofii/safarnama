@@ -1,0 +1,34 @@
+---
+layout: index
+title: Projects
+summary: I work with responsible organisations to create products and services that make the world just a little bit easier to live in.
+introduction: |
+  I work with responsible organisations to create products and services that make the world just a little bit easier to live in.
+
+  Need a hand on your next project? [Get in touch](/contact/).
+permalink: projects/
+tags: false
+changefreq: weekly
+priority: 0.9
+---
+{%- assign featured = collections.project | includes: 'data.tags','featured' | reverse -%}
+{%- render 'section' with featured
+  id: 'featured'
+  title: 'Select case studies'
+  scrollable: true
+  itemsComponent: 'card'
+  itemsGridSize: '15rem'
+  itemImageRatio: 1.0
+-%}
+{%- render 'section' with testimonials
+  id: 'testimonials'
+  title: 'Nice words said about my work'
+  itemsComponent: 'testimonial'
+  itemsGridSize: '20rem',
+-%}
+{%- render 'section' with collections.skill
+  id: 'skills'
+  title: 'The work that I do'
+  itemsComponent: 'section'
+  itemsGridSize: '15rem'
+-%}

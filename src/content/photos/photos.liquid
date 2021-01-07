@@ -1,0 +1,20 @@
+---
+layout: index
+title: Photos
+pagination:
+  data: collections.photo
+  reverse: true
+  size: 36
+permalink: "photos/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumber | plus: 1 }}.html{% else %}/{% endif %}"
+tags: false
+changefreq: daily
+priority: 0.9
+eleventyComputed:
+  pageTitle: "{{ title }} · {{ app.title }}"
+---
+{%- render 'items' with pagination.items
+  component: 'card-photo'
+  gridSize: '15rem'
+  modifier: 'photos'
+-%}
+{%- render 'pagination' with pagination -%}

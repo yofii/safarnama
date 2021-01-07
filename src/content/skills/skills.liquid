@@ -1,0 +1,14 @@
+---
+layout: index
+title: Projects
+introduction: Skills
+permalink: projects/skills/
+changefreq: weekly
+priority: 0.9
+eleventyComputed:
+  pageTitle: "{{ introduction }} · {{ app.title }}"
+---
+{%- render 'items' with skills
+  component: 'section'
+  gridSize: '12rem'
+-%}

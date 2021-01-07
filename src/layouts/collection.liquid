@@ -1,0 +1,17 @@
+{%- layout 'default' -%}
+{%- block 'main' -%}
+  {%- render 'header'
+    title: title
+    summary: summary
+  -%}
+  {%- render 'content' with content -%}
+  {%- assign items = collections.all | includes: 'data.collection',page.fileSlug -%}
+  {%- assign itemsComponent = itemsComponent | default: 'card' -%}
+  {%- render 'section' with items
+    id: 'items'
+    title: 'Items in this collection'
+    itemsComponent: itemsComponent
+    itemsGridSize: '15rem'
+    itemsModifier: itemsModifier
+  -%}
+{%- endblock -%}

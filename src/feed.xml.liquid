@@ -1,0 +1,37 @@
+---
+eleventyExcludeFromCollections: true
+permalink: /feed.xml
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>{{ app.url }}{{ page.url }}</id>
+  <title>{{ app.title }}</title>
+  <updated>{{ 'now' | date: dates.iso }}</updated>
+  <author>
+    <name>{{ app.author.name }}</name>
+    <email>{{ app.author.email }}</email>
+    <uri>{{ app.author.url }}</uri>
+  </author>
+  <link rel="self" href="{{ '/feed.xml' | absolute_url: app.url }}" type="application/atom+xml"/>
+  <link rel="alternate" href="{{ app.url }}" type="text/html"/>
+  <link rel="hub" href="http://pubsubhubbub.superfeedr.com/"/>
+  <icon>{{ app.icon | absolute_url: app.url }}</icon>
+  <rights>&#169; {{ 'now' | date: 'yyyy' }} {{ app.author.name }}. Content Creative Commons licensed unless otherwise stated.</rights>
+{% for item in collections.post limit: 25 %}
+  <entry>
+    <id>{{ item.url | absolute_url: app.url }}</id>
+    <title>{{ item.data.title | markdown: 'inline' | escape | strip_html | strip_newlines }}</title>
+    <updated>{{ item.date | date: dates.iso }}</updated>
+    {% if item.data.url %}
+    <link rel="alternate" href="{{ item.data.url }}" type="text/html"/>
+    <link rel="related" href="{{ item.url | absolute_url: app.url }}" type="text/html"/>
+    {% elsif item.data.in_reply_to %}
+    <link rel="alternate" href="{{ item.data.in_reply_to }}" type="text/html"/>
+    <link rel="related" href="{{ item.url | absolute_url: app.url }}" type="text/html"/>
+    {% else %}
+    <link rel="alternate" href="{{ item.url | absolute_url: app.url }}" type="text/html"/>
+    {% endif %}
+    <content type="html"><![CDATA[{{ item | template_content_to_feed_html }}]]></content>
+  </entry>
+{% endfor %}
+</feed>

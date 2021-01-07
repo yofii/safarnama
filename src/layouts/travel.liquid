@@ -1,0 +1,33 @@
+{%- layout 'default' -%}
+{%- block 'main' -%}
+  {%- render 'footer-event'
+    date: date
+    start: start
+    end: end
+    vocab: vocab
+  -%}
+  {%- render 'header'
+    title: title
+    summary: summary
+    url: url
+    vocab: vocab
+  -%}
+  {%- capture content -%}
+    <figure class="align-bleed">
+      {%- capture overlay %}geojson({{ geojson | json | escape }}){% endcapture -%}
+      {%- render 'map'
+        overlay: overlay
+        position: position
+      -%}
+    </figure>
+    {{ place.content | markdown }}
+    {%- render 'trips' with relatedTrips -%}
+  {%- endcapture -%}
+  {%- render 'content' with content -%}
+  {%- render 'section' with relatedArticles
+    id: 'related'
+    title: 'Related articles'
+    itemsComponent: 'card'
+    itemsGridSize: '15rem'
+  -%}
+{%- endblock -%}

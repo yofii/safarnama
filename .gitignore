@@ -1,0 +1,14 @@
+# Workspace
+*.vscode
+
+# Files to ignore
+*.crt
+*.env
+*.key
+*.tap
+
+# Folders to ignore
+.cache
+node_modules
+ssl
+www

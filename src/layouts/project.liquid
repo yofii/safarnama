@@ -1,0 +1,14 @@
+{%- layout 'default' -%}
+{%- block 'main' -%}
+  {%- render 'header'
+    title: title
+    summary: summary
+    vocab: vocab
+  -%}
+  {%- render 'content' with content -%}
+  {%- render 'section' with relatedArticles
+    id: 'related'
+    title: 'Related articles'
+    itemsGridSize: '15rem'
+  -%}
+{%- endblock -%}

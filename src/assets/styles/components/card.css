@@ -1,0 +1,99 @@
+.card {
+  --anchor-decoration: none;
+  --color-accent: var(--color-accent-light);
+  --card-growth: var(--step-0);
+
+  background: var(--color-offset);
+  border-radius: var(--border-radius);
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  transition-duration: var(--transition-short);
+  transition-property: background-color, box-shadow, margin, padding;
+}
+
+@media (prefers-color-scheme: dark) {
+  .card {
+    --color-accent: var(--color-accent-dark);
+  }
+}
+
+.card:hover {
+  background-color: var(--color-background);
+  box-shadow:
+    0 0 1vw var(--color-shadow),
+    0 0 4vw var(--color-shadow);
+}
+
+@media (--from-small-viewport) {
+  .card:hover {
+    margin: calc(var(--card-growth) * -1);
+    padding: var(--card-growth);
+  }
+
+  .card__image {
+    margin: calc(var(--card-growth) * -1);
+  }
+
+  .card__image:not(:last-child) {
+    margin-block-end: 0;
+  }
+}
+
+.card[style^="--color-accent"] .card__image {
+  background-color: var(--color-accent);
+}
+
+.card[style^="--color-accent"] .card__image img {
+  filter: contrast(0.75) brightness(1.25);
+  mix-blend-mode: luminosity;
+}
+
+.card__header {
+  padding: var(--inset-small);
+  padding-block-end: 0;
+}
+
+.card__title {
+  @extend %subhead;
+  --subhead-font-size: var(--step-1);
+}
+
+.card__title a::before {
+  content: "";
+  inset: 0;
+  position: absolute;
+  z-index: 2;
+}
+
+.card__title a:focus {
+  outline: 0;
+}
+
+.card__title a:focus::before {
+  outline: var(--border-width-thicker) solid var(--color-focus);
+  outline-offset: calc(var(--border-width-thicker) * -1);
+}
+
+.card__main {
+  @extend %body;
+  --body-line-height: var(--line-height-tight);
+  color: var(--color-neutral-dark);
+  padding: var(--inset-small);
+}
+
+.card__footer {
+  @extend %caption;
+
+  margin-block-start: auto;
+  padding: var(--inset-small);
+}
+
+.card svg {
+  color: white;
+  inset-block-end: var(--space-inline);
+  inset-inline-end: var(--space-inline);
+  position: absolute;
+}
